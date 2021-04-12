@@ -50,8 +50,8 @@ function searchHandler (req,res){
   //   console.log('Search');
   let bookName = req.query.book;
   console.log('bookname?',bookName);
-  let url = `https://www.googleapis.com/books/v1/volumes?q=${bookName}+intitle`;
-  let url2 = `https://www.googleapis.com/books/v1/volumes?q=${bookName}+inauthour`;
+  let url = `https://www.googleapis.com/books/v1/volumes?q=+in${bookName}+intitle`;
+  let url2 = `https://www.googleapis.com/books/v1/volumes?q=+in${bookName}+inauthour`;
   if (req.query.bookChoice === 'title'){ ulrChoice = url;}
   else if(req.query.bookChoice === 'author') {ulrChoice = url2;}
   superagent.get(ulrChoice)
