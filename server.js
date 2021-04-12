@@ -46,15 +46,16 @@ function homeRouteHandler(req, res) {
 
 function searchHandler (req,res){
   let booksArray = [];
-  let ulrChoice;
+//   let ulrChoice;
   //   console.log('Search');
   let bookName = req.query.book;
+  let searchChoice = req.query.bookChoice;
   console.log('bookname?',bookName);
-  let url = `https://www.googleapis.com/books/v1/volumes?q=+in${bookName}+intitle`;
-  let url2 = `https://www.googleapis.com/books/v1/volumes?q=+in${bookName}+inauthour`;
-  if (req.query.bookChoice === 'title'){ ulrChoice = url;}
-  else if(req.query.bookChoice === 'author') {ulrChoice = url2;}
-  superagent.get(ulrChoice)
+  let url = `https://www.googleapis.com/books/v1/volumes?q=+in${bookName}+${searchChoice}`;
+//   let url2 = `https://www.googleapis.com/books/v1/volumes?q=${bookName}+inauthour`;
+//   if (req.query.bookChoice === 'title'){ ulrChoice = url;}
+//   else if(req.query.bookChoice === 'author') {ulrChoice = url2;}
+  superagent.get(url)
     .then(booksData=>{
       let bData = booksData.body.items;
       bData.forEach (val => {
