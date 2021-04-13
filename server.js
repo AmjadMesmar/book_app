@@ -29,11 +29,12 @@ const app = express();
 app.set('view engine','ejs');
 app.use(express.static('./public'));
 app.use(cors());
+app.use( express.urlencoded( {extended:true} ) ); // for POST method to work.
 
 // Routes:
 
 app.get('/', homeRouteHandler);//home route
-app.get('/search', searchHandler);//hello route
+app.post('/search', searchHandler);//hello route
 app.get('*', notFoundHandler); //error handler
 
 
@@ -46,15 +47,11 @@ function homeRouteHandler(req, res) {
 
 function searchHandler (req,res){
   let booksArray = [];
-//   let ulrChoice;
-  //   console.log('Search');
-  let bookName = req.query.book;
-  let searchChoice = req.query.bookChoice;
+  let bookName = req.body.book; // req.query for GET method , req.body for POST method
+  let searchChoice = req.body.bookChoice;
   console.log('bookname?',bookName);
-  let url = `https://www.googleapis.com/books/v1/volumes?q=+in${bookName}+${searchChoice}`;
-//   let url2 = `https://www.googleapis.com/books/v1/volumes?q=${bookName}+inauthour`;
-//   if (req.query.bookChoice === 'title'){ ulrChoice = url;}
-//   else if(req.query.bookChoice === 'author') {ulrChoice = url2;}
+  console.log('bookname choice?',searchChoice);
+  let url = `https://www.googleapis.com/books/v1/volumes?q=+${searchChoice}:${bookName}`;
   superagent.get(url)
     .then(booksData=>{
       let bData = booksData.body.items;
@@ -65,11 +62,8 @@ function searchHandler (req,res){
       // res.send(bData);
       res.render('pages/searches/show',{booksArr:booksArray});
     });
-
-
-
-  // res.render();
 }
+
 
 function notFoundHandler(req, res) {
   res.render('pages/error');
@@ -81,16 +75,13 @@ app.listen(PORT, () => {
 
 function Book (bookData){
 
-  this.title = bookData.volumeInfo.title;
-  this.author = bookData.volumeInfo.authors;
-  this.date = bookData.volumeInfo.publishedDate;
-  this.cover = bookData.volumeInfo.imageLinks.thumbnail;
-  this.description = bookData.volumeInfo.description;
+  this.title = (bookData.volumeInfo.title) ? bookData.volumeInfo.title : 'Not avialable';
+  this.author = (bookData.volumeInfo.authors) ? bookData.volumeInfo.authors.join(',') : 'Not avialable';
+  this.date = (bookData.volumeInfo.publishedDate) ? bookData.volumeInfo.publishedDate : 'Not avialable';
+  this.cover = (bookData.volumeInfo.imageLinks) ? bookData.volumeInfo.imageLinks.thumbnail : 'https://i.imgur.com/J5LVHEL.jpg';
+  this.description = (bookData.volumeInfo.description) ? bookData.volumeInfo.description : 'Not avialable';
 
-//   allBooks.push(this);
 }
-
-// Book.allBooks = [];
 
 
 // client.connect()
