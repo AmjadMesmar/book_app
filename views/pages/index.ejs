@@ -4,22 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/reset.css">
-    <link rel="stylesheet" href="styles/base.css">
-    <title>Book APP</title>
+    <title>Book App</title>
 </head>
 <body>
-<h1>Search Book</h1>
+    <header>
+        <ul>
+            <li> <a href="/">Home</a></li>
+            <li> <a href="/search_book">Search Books</a></li>
+        </ul>
+    </header>
 
-<form action="/search" method="POST">
-<input type="text" name="book" placeholder="Enter book auther or title">
-<br>
-<label>Title  <input type="radio" value="intitle" name="bookChoice" required></label>
-<br>
-<label>Author <input type="radio" value="inauthor" name="bookChoice" required></label> 
-<br>
-<button>Go</button>   
-</form>
+        <% booksArr.forEach(book=>{ %>
+            <div>
+            <img src=<%= book.image_url %> alt="book" >
+            <h3>Title: <%= book.title %></h3>
+            <p>Author: <%= book.author %></p>
+            <p>ISBN: <%= book.isbn %></p>
+            <p>Publish date: <%= book.date %></p>
+            <p>Description: <%= book.description %></p>
+            <!-- <button>Add this book</button> -->
+        </div>
+        <form action="/details/<%= book.id %>" method="post">
+            <button>Details</button>
+        </form>
+        <% }) %>
 
+    
 </body>
 </html>
