@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li> <a href="/">Home</a></li>
+        <li> <a href="/search_book">Search Books</a></li>
+    </ul>
+
+    <div>
+        <img src=<%= book.image_url %> alt="book" >
+        <h3>Title: <%= book.title %></h3>
+        <p>Author: <%= book.author %></p>
+        <p>ISBN: <%= book.isbn %></p>
+        <p>Publish date: <%= book.date %></p>
+        <p>Description: <%= book.description %></p>
+    </div>
+    
+
+    <form action="/deleteBook/<%=book.id%>?_method=delete" method="post">
+        <button>Delete book</button>
+     </form>
+
+     <button id='updateButton'>Update</button>
+
+     <section id="updateSection">
+    <form action="/updateBook/<%=book.id%>?_method=put" method="post">
+    <div>
+        <input type="text" name="image" value="<%= book.image_url %>">
+        <input type="text" name="title" value="<%= book.title %>">
+        <input type="text" name="author" value="<%= book.author %>">
+        <input type="text" name="isbn" value="<%= book.isbn %>">
+        <input type="text" name="publishDate" value="<%= book.date %>">
+        <input type="text" name="description" value="<%= book.description %>">
+        <button>Update book</button>
+    </div>
+</form>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/code/app.js"></script>
+</body>
+</html>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/base.css">
-    <title>Error</title>
+    <title>Search Book</title>
 </head>
 <body>
     <header>
@@ -15,11 +15,16 @@
             <li> <a href="/search_book">Search Books</a></li>
         </ul>
     </header>
-    <h1>Erorr 404</h1>
-    <p>Sorry, The page you requested does not exist :(</p>
-    <img src="Images/umaru-cry.gif">
     
-    
-    
+<form action="/search" method="POST">
+<input type="text" name="book" placeholder="Enter book auther or title">
+<br>
+<label>Title  <input type="radio" value="intitle" name="bookChoice" required></label>
+<br>
+<label>Author <input type="radio" value="inauthor" name="bookChoice" required></label> 
+<br>
+<button>Go</button>   
+</form>
+
 </body>
 </html>
