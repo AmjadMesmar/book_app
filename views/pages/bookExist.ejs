@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/base.css">
     <link rel="icon" href="Images/TTGL.png">
-    <title>Search Book</title>
+    <title>Already Exist</title>
 </head>
 <body>
     <header>
@@ -16,20 +16,11 @@
             <li> <a href="/search_book">Search Books</a></li>
         </ul>
     </header>
-<section id="searchForm" >
-<form action="/search" method="POST">
-<input type="text" name="book" placeholder="Enter book auther or title" required>
-<br>
-<div id="titleInput">
-<label>Title  <input type="radio" value="intitle" name="bookChoice" required></label>
-</div>
-<div id="authorInput">
-<label>Author <input type="radio" value="inauthor" name="bookChoice" required></label> 
-</div>
-<br>
-<button>Go</button>   
-</form>
-</section>
-
+    <section id="route">
+    <h1>Sorry,You already have this book in your list.</h1>
+    <p>Maybe check it back in home or search for a new book instead?</p>
+    <img id="Juza" src="Images/Juza-tsk-tsk.gif">
+    </section>
+    
 </body>
 </html>

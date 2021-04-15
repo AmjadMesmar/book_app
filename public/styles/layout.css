@@ -1,4 +1,18 @@
-div img {
-    width: 20em;
-    height: 20em;
+
+h1 {
+/* text-align: center; */
+font-size: 2em;
+}
+header{
+    background-color:#1b1717;
+    margin-bottom:.5em;
+}
+a {
+    text-decoration: none;
+    color: #ce1212;
+
+}
+button{
+    background-color:#1b1717;
+color: #ce1212;
 }

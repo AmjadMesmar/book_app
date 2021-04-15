@@ -1,14 +1,16 @@
-@import url("font-awesome.min.css");
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,600");
+@import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
 @import url("layout.css");
 @import url("modules.css");
 @import url("state.css");
 
 * {
     box-sizing: border-box;
+    font-family: 'Zen Dots', cursive;
   }
 
   body{
     width: 960px;
     margin: auto;
+    background-color:#614e4e;
+    font-family: 'Zen Dots', cursive;
   }
