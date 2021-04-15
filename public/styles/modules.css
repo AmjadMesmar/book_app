@@ -1,0 +1,81 @@
+#Juza, #Umaru, #All-Might{
+width: 40em;
+height: 30em;
+}
+header ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+header ul li{
+    padding: 0.7em;
+}
+#addedBooks {
+    display: grid;
+ 
+    grid-template-columns: repeat(3, 1fr);
+     
+    grid-auto-rows: auto;
+     
+    grid-gap: 1rem;
+     
+}
+#addedBooks div img {
+    width: 20em;
+    height: 20em;   
+}
+#addedBooks div{
+border: 2px solid #e7e7e7;
+ 
+border-radius: 4px;
+ 
+padding: .3rem;
+background-color: #810000;
+color:cornsilk;
+}
+#addedBooks div button{
+    position: relative;
+    left: 7em;
+}
+#descriptionBox{
+    overflow:scroll;
+    width: 20em;
+    height: 5em;
+}
+
+#searchForm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: #1b1717 solid .3em;
+    padding: 1em;
+}
+#searchForm form button {
+    position: relative;
+    left: .1em;
+    padding: .3em 7em;
+    font-weight: bold;
+}
+#authorInput{
+position: relative;
+left: 9.5em;
+bottom: 1em;
+
+}
+#titleInput{
+ position: relative;
+ top: .5em;
+}
+
+#route img{
+    display: flex;
+    justify-content: center;
+    border: #1b1717 solid .3em;
+    padding: 1em;
+    margin: auto;
+}
+#route h1, #route p {
+
+text-align: center;   
+padding: .5em; 
+}

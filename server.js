@@ -20,12 +20,12 @@ const PORT = process.env.PORT || 3000;
 
 // adding DATABASE URL for localhost:
 
-const client = new pg.Client(process.env.DATABASE_URL);
+// const client = new pg.Client(process.env.DATABASE_URL);
 
 // adding DATABASE URL for Heroku:
 
-// const client = new pg.Client({ connectionString: process.env.DATABASE_URL,
-//      ssl: { rejectUnauthorized: false } });
+const client = new pg.Client({ connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false } });
 
 
 const app = express();
@@ -93,14 +93,14 @@ function addBookHandler (req,res) {
   let bookDate = req.body.publishDate;
   let bookDescription = req.body.description;
 
-  let SQL = `SELECT * FROM books WHERE title=$1`;
-  let bookCheck = [bookTitle];
+  let SQL = `SELECT * FROM books WHERE isbn=$1`;
+  let bookCheck = [bookIsbn];
   client.query(SQL, bookCheck).then(result => {
     // console.log(result);
     if (result.rowCount) {
       // res.send(result.rows[0]);
       console.log('Book already added');
-      res.send('book already exist');
+      res.render('pages/bookExist');
     }
     else {
       SQL = `INSERT INTO books (image_url,title,author,isbn,date,description) VALUES ($1,$2,$3,$4,$5,$6) RETURNING *;`;
@@ -110,7 +110,7 @@ function addBookHandler (req,res) {
           // res.send(result);
           console.log('New Book added');
           // res.send('new book added');
-          res.render('pages/details',{book:result.rows[0]});
+          res.render('pages/bookAdd');
 
         });
     }
@@ -143,6 +143,7 @@ function updateBookHandler (req,res){
 }
 
 function deleteBookHandler(req,res) {
+  // confirm("Press a button!");
   let SQL = `DELETE FROM books WHERE id=$1;`;
   let value = [req.params.bookID];
   client.query(SQL,value)

@@ -1,0 +1,9 @@
+a:hover{
+    background-color:#ce1212;
+    color:#1b1717;
+}
+
+button:active{
+background-color:#ce1212;
+color: #1b1717;
+}
