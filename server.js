@@ -24,8 +24,7 @@ const PORT = process.env.PORT || 3000;
 
 // adding DATABASE URL for Heroku:
 
-const client = new pg.Client({ connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false } });
+const client = new pg.Client({ connectionString: process.env.DATABASE_URL,ssl: { rejectUnauthorized: false } });
 
 
 const app = express();
